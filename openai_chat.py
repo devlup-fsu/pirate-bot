@@ -5,6 +5,9 @@ from rich import print
 
 #Code from https://github.com/DougDougGithub/Babagaboosh
 
+with open("openaikey.txt", "r") as tokenFile:
+    openAIToken = tokenFile.read().strip()
+
 def num_tokens_from_messages(messages, model='gpt-3.5-turbo-1106'):
   """Returns the number of tokens used by a list of messages.
   Copied with minor changes from: https://platform.openai.com/docs/guides/chat/managing-tokens """
@@ -29,7 +32,7 @@ class OpenAiManager:
     def __init__(self):
         self.chat_history = [] # Stores the entire conversation
         try:
-            self.client = OpenAI(api_key="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")
+            self.client = OpenAI(api_key=openAIToken)
         except TypeError:
             exit("Ooops! You forgot to set OPENAI_API_KEY in your environment!")
 
